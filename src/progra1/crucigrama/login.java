@@ -17,7 +17,7 @@ public class login extends JFrame{
        
         
     public login(){ 
-        super ("login");                                                                        
+        super ("Ingreso");                                                                        
         setLayout(null);
         
         

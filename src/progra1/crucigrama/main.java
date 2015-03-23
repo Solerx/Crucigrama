@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 
 public class main {
     
+    public static String name = "";
     
     public static void main(String[] args) {
         
@@ -16,7 +17,7 @@ public class main {
         
         login.btnEnter.addActionListener(new ActionListener(){
         public void actionPerformed(ActionEvent e) {
-            login.inputText.getText();
+            name = login.inputText.getText();
             new crosswordWindow().setVisible(true);
             login.dispose();
             }
@@ -24,5 +25,6 @@ public class main {
     
         
     }
+    
     
 }

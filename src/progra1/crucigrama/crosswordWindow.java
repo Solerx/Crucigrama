@@ -39,25 +39,21 @@ public class crosswordWindow extends JFrame {
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        
-        
-        
+              
         /*tamaño de la ventana y el centrado de la ventana. Si se pone el valor setSize en la clase main, que vendria siendo crosswordWindow.setSize();,
         no funciona bien con el paquete Toolkit y Dimension, que son los que centran la ventana*/
         setSize(950, 650);
         Toolkit toolkit = getToolkit();
         Dimension centerCross = toolkit.getScreenSize();
         setLocation(centerCross.width/2 - getWidth()/2, centerCross.height/2 - getHeight()/2);
-        
-        
+                
         player = new JLabel("Jugador:");
         Dimension sizePlayer = player.getPreferredSize();
         player.setBounds(15, 30, sizePlayer.width, sizePlayer.height); /*los primeros 2 valores definen el posicionamiento en la ventana -> horizontal y vertical.*/
         add(player);
         
-        
-        //aca va el nombre digitado por el usuario en la pantalla login
-        userName = new JLabel(); 
+                //aca va el nombre digitado por el usuario en la pantalla login
+        userName = new JLabel(main.name); 
         Dimension sizeUser = userName.getPreferredSize();
         userName.setBounds(17, 47, sizeUser.width, sizeUser.height);
         userName.setFont(new Font("ARIAL", Font.PLAIN, 12));
