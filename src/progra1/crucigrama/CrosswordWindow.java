@@ -61,7 +61,7 @@ public class CrosswordWindow extends JFrame {
         userName = new JLabel(Main.setName); 
         Dimension sizeUser = userName.getPreferredSize();
         userName.setBounds(69, 30, sizeUser.width, sizeUser.height);
-        userName.setFont(new Font("ARIAL", Font.BOLD, 12));
+        userName.setFont(new Font("Arial", Font.BOLD, 12));
         add(userName);
         
         
@@ -149,13 +149,61 @@ public class CrosswordWindow extends JFrame {
     
     public static void clueVertAnimals(){
         ArrayList clueVert = new ArrayList();
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        
+        clueVert.add("Mamífero acuático muy inteligente y simpático"); //DELFIN
+        clueVert.add("Muy grande con colmillos, orejas enormes y trompa"); //ELEFANTE
+        clueVert.add("Felino pintado a rayas, muy feroz"); //TIGRE
+        clueVert.add("Es el animal con el cuello más largo"); //JIRAFA
+        clueVert.add("Al trote o al galope era el medio de transporte de indios y vaqueros"); //CABALLO
+        clueVert.add("Como lleva un caparazón muy pesado, siempre va muy despacio"); //TORTUGA
     }
     
+    public static void clueHoriAnimals(){
+        ArrayList clueHori = new ArrayList();
+        clueHori.add("Tiene bigotes y siete vidas"); //GATO
+        clueHori.add("Oso grande, blanco y negro y es originario de Asia"); //PANDA
+        clueHori.add("Tiene alas grandes, coloridas y sale de un capullo"); //MARIPOSA
+        clueHori.add("Dicen que es el mejor amigo del hombre"); //PERRO
+        clueHori.add("El rey de la selva, con melena larga"); //LEON
+        clueHori.add("Vive en el agua y tiene una boca larga y llena de dientes"); //COCODRILO
+    }
+    
+    public static void clueVertRoman(){
+        ArrayList clueVert = new ArrayList();
+        clueVert.add("Los cristianos se refugiaban en…"); //CATACUMBAS
+        clueVert.add("Religión que en un principio fue perseguida pero después paso a ser la religión oficial del imperio romano"); //CRISTIANISMO
+        clueVert.add("Era la moneda Romana"); //DENARIODEPLATA <--- palabra mas larga con 14 chars
+        clueVert.add("Era la principal actividad económica Romana"); //AGRICULTURA
+        clueVert.add("Nombre de la lengua del Imperio Romano "); //LATIN
+        clueVert.add("Nombre del principal dios romano en la época pre cristiana"); //JUPITER
+    }
+    
+    public static void clueHoriRoman(){
+        ArrayList clueHori = new ArrayList();
+        clueHori.add("Emperador que  concedió la libertad religiosa a los cristianos"); //CONSTANTINO
+        clueHori.add("Nombre que recibe el conjunto de leyes romanas"); //DERECHOROMANO
+        clueHori.add("El español, francés, portugués, catalán, italiano y rumano se derivaron del… "); //LATIN
+        clueHori.add("El culto domestico era dirigido por el… "); //PADRE
+        clueHori.add("La arquitectura y escultura romana fue influenciada por la cultura… "); //GRIEGA
+        clueHori.add("El descenso de la producción agrícola es una causa… "); //ECONOMICA
+    }
+    
+    public static void clueVertGeography(){
+        ArrayList clueVert = new ArrayList();
+        clueVert.add("Océano que baña a Islandia"); //ATLANTICO
+        clueVert.add("País por el que pasa el rio Elba"); //ALEMANIA
+        clueVert.add("Capital del país situado a la derecha de Suecia"); //HELSINKI
+        clueVert.add("País cuya capital es Zagreb"); //CROACIA
+        clueVert.add("Rio que divide a Rusia en 2 mitades"); //IRTISH
+        clueVert.add("Capital del país que se encuentra entre Venezuela y Ecuador"); //BOGOTA
+    }
+    
+    public static void clueHoriGeography(){
+        ArrayList clueHori = new ArrayList();
+        clueHori.add("Montes que están entre Francia, Suiza e Italia"); //ALPES
+        clueHori.add("País cuya capital es Bagdad"); //IRAK
+        clueHori.add("País que está a la par de Haití"); //DOMINICANA
+        clueHori.add("Tercer isla más grande del mundo"); //BORNEO
+        clueHori.add("Cabo en la península de Somalia"); //GUARDAFUI
+        clueHori.add("Capital de Bolivia"); //LAPAZ
+    }
 }
