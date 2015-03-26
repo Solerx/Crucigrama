@@ -145,6 +145,6 @@ public class crosswordWindow extends JFrame {
     
    public void combobox(){
        
-            //int name = Integer.parseInt(crosswordCategories.getSelectedItem());
+            int name = Integer.parseInt(crosswordCategories.getSelectedItem());
    }
 }
