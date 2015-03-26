@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 
-public class login extends JFrame{   
+public class Login extends JFrame{   
     
         
         JButton btnEnter;
@@ -16,10 +16,9 @@ public class login extends JFrame{
         JTextField inputText;
        
         
-    public login(){ 
+    public Login(){ 
         super ("Ingreso");                                                                        
         setLayout(null);
-        
         
         /*tamaño de la ventana y el centrado de la ventana. Si se pone el valor setSize en la clase main, que vendria siendo login.setSize();,
         no funciona bien con el paquete Toolkit y Dimension, que son los que centran la ventana*/
