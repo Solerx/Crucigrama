@@ -8,7 +8,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 
-public class Login extends JFrame{   
+public class login extends JFrame{   
     
         
         JButton btnEnter;
@@ -16,8 +16,8 @@ public class Login extends JFrame{
         JTextField inputText;
        
         
-    public Login(){ 
-        super ("Login");                                                                        
+    public login(){ 
+        super ("Ingreso");                                                                        
         setLayout(null);
         
         

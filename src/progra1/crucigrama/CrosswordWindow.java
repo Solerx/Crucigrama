@@ -12,12 +12,11 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.BorderFactory;
 
 
 
-public class CrosswordWindow extends JFrame {
+public class crosswordWindow extends JFrame {
   
     public JLabel player;   
     public JLabel horizontalText;
@@ -35,33 +34,29 @@ public class CrosswordWindow extends JFrame {
     public JList vertList;
     
     
-    public CrosswordWindow() {
+    public crosswordWindow() {
         super("Crucigrama");  /*Titulo de la ventana*/
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-        
-        
-        
+              
         /*tamaño de la ventana y el centrado de la ventana. Si se pone el valor setSize en la clase main, que vendria siendo crosswordWindow.setSize();,
         no funciona bien con el paquete Toolkit y Dimension, que son los que centran la ventana*/
         setSize(950, 650);
         Toolkit toolkit = getToolkit();
         Dimension centerCross = toolkit.getScreenSize();
         setLocation(centerCross.width/2 - getWidth()/2, centerCross.height/2 - getHeight()/2);
-        
-        
+                
         player = new JLabel("Jugador:");
         Dimension sizePlayer = player.getPreferredSize();
         player.setBounds(15, 30, sizePlayer.width, sizePlayer.height); /*los primeros 2 valores definen el posicionamiento en la ventana -> horizontal y vertical.*/
         add(player);
         
-        
-        //aca va el nombre digitado por el usuario en la pantalla login
-        userName = new JLabel(Main.setName); 
+                //aca va el nombre digitado por el usuario en la pantalla login
+        userName = new JLabel(main.name); 
         Dimension sizeUser = userName.getPreferredSize();
-        userName.setBounds(69, 30, sizeUser.width, sizeUser.height);
-        userName.setFont(new Font("ARIAL", Font.BOLD, 12));
+        userName.setBounds(17, 47, sizeUser.width, sizeUser.height);
+        userName.setFont(new Font("ARIAL", Font.PLAIN, 12));
         add(userName);
         
         
@@ -147,15 +142,9 @@ public class CrosswordWindow extends JFrame {
         
 }
     
-    public static void clueVertAnimals(){
-        ArrayList clueVert = new ArrayList();
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        clueVert.add("Mamífero acuático muy inteligente y simpático");
-        
-    }
     
+   public void combobox(){
+       
+            int name = Integer.parseInt(crosswordCategories.getSelectedItem());
+   }
 }
