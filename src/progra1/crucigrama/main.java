@@ -10,7 +10,7 @@ public class main {
     
     public static void main(String[] args) {
         
-        final login login = new login();                            /*se inicializa las ventana login y sus propiedades*/
+        final login login = new login();                      /*se inicializa las ventana login y sus propiedades*/
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); /*cierra el programa al salirse de la ventana*/
         login.setVisible(true);
         login.setResizable(false);
@@ -22,6 +22,8 @@ public class main {
             login.dispose();
             }
         });
+        
+       
     
         
     }

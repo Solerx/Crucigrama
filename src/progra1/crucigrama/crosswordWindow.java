@@ -79,13 +79,18 @@ public class crosswordWindow extends JFrame {
         verticalText.setFont(new Font("Arial", Font.PLAIN, 12));
         add(verticalText);
         
-        
-        crosswordCategories = new JComboBox();
+        final String categories[] = { "A", "B", "C", "D", "E" };
+        crosswordCategories = new JComboBox(categories);
         crosswordCategories.setBounds(20, 100, 150, 21); /*Los últimos 2 valores definen el tamaño del objeto*/
         crosswordCategories.setFont(new Font("Tahoma", Font.PLAIN, 11)); /*cambio de letra y tamaño*/
         crosswordCategories.setToolTipText("Seleccione una categoria");
+   
+        
         add(crosswordCategories);
         
+        
+        crosswordCategories.addActionListener(crosswordCategories);
+        crosswordCategories.addActionListener(actionListener);
         
         /*El panel que va a contener el crucigrama en si*/
         crossPanel = new JPanel(); 
@@ -141,10 +146,12 @@ public class crosswordWindow extends JFrame {
         add(vertList);
         
 }
-    
-    
-   public void combobox(){
-       
-            int name = Integer.parseInt(crosswordCategories.getSelectedItem());
-   }
+   
+   ActionListener actionListener = new ActionListener() {
+      public void actionPerformed(ActionEvent actionEvent) {
+          
+                System.out.println("Selected: " + crosswordCategories.getSelectedItem());
+                System.out.println(", Position: " + crosswordCategories.getSelectedIndex());
+      }
+    };
 }
