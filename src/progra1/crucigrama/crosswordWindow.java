@@ -11,45 +11,48 @@ import javax.swing.JComboBox;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class CrosswordWindow extends JFrame {
-
-    public JLabel player;
-    public JLabel horizontalText;
-    public JLabel verticalText;
-    public JLabel labelScore;
-    public JLabel userScore;
-    public JLabel userName;
-    public JComboBox crosswordCategories;
-    public JPanel crossPanel;
-    public JButton newGame;
-    public JButton revealAll;
-    public JButton showChar;
-    public JButton showWord;
-    public JButton verifyWord;
-    public JList horizontalList;
-    public JList verticalList;
+/*Creation of Objects*/
+    
+    JLabel player;
+    JLabel horizontalText;
+    JLabel verticalText;
+    JLabel labelScore;
+    JLabel userScore;
+    JLabel userName;
+    JComboBox crosswordCategories;
+    JPanel crossPanel;
+    JButton newGame;
+    JButton revealAll;
+    JButton showChar;
+    JButton showWord;
+    JButton verifyWord;
+    JList horizontalList;
+    JList verticalList;
     JLabel gridLetters;
     Container container;
     int category = 0;
-
+    
+    /*Window properties and adding objects to the window*/
     public CrosswordWindow() {
-        super("Crucigrama");  /*Titulo de la ventana*/
+        super("Crucigrama");  
+
 
         setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
-        /*tamaño de la ventana y el centrado de la ventana. Si se pone el valor setSize en la clase main, que vendria siendo crosswordWindow.setSize();,
-         no funciona bien con el paquete Toolkit y Dimension, que son los que centran la ventana*/
         setSize(950, 650);
         Toolkit toolkit = getToolkit();
         Dimension centerCross = toolkit.getScreenSize();
@@ -57,15 +60,15 @@ public class CrosswordWindow extends JFrame {
 
         player = new JLabel("Jugador:");
         Dimension sizePlayer = player.getPreferredSize();
-        player.setBounds(15, 30, sizePlayer.width, sizePlayer.height); /*los primeros 2 valores definen el posicionamiento en la ventana -> horizontal y vertical.*/
+        player.setBounds(15, 30, sizePlayer.width, sizePlayer.height); 
 
         add(player);
 
-        //aca va el nombre digitado por el usuario en la pantalla login
+        
         userName = new JLabel(main.name);
         Dimension sizeUser = userName.getPreferredSize();
         userName.setBounds(70, 30, sizeUser.width, sizeUser.height);
-        userName.setFont(new Font("ARIAL", Font.BOLD, 12));
+        userName.setFont(new Font("Arial", Font.PLAIN, 12));
         add(userName);
 
         labelScore = new JLabel("Puntuación:");
@@ -93,24 +96,26 @@ public class CrosswordWindow extends JFrame {
         final String categories[] = {"Animales", "Capitales del Mundo", "El Clima"};
         crosswordCategories = new JComboBox(categories);
         crosswordCategories.setSelectedIndex(-1);
-        crosswordCategories.setBounds(20, 100, 150, 21); /*Los últimos 2 valores definen el tamaño del objeto*/
-        crosswordCategories.setFont(new Font("Tahoma", Font.PLAIN, 11)); /*cambio de letra y tamaño*/
+        crosswordCategories.setBounds(20, 100, 150, 21); 
+
+        crosswordCategories.setFont(new Font("Tahoma", Font.PLAIN, 11)); 
+
         crosswordCategories.setToolTipText("Seleccione una categoria");
         add(crosswordCategories);
         crosswordCategories.addActionListener(comboboxactionListener);
 
-        /*El panel que va a contener el crucigrama en si*/
-          crossPanel = new JPanel(new GridLayout(10, 10, 5, 5));
-          crossPanel.setBounds(240, 40, 680, 360);
-          crossPanel.setBackground(Color.white);
+        
+        crossPanel = new JPanel(new GridLayout(10, 10, 5, 5));
+        crossPanel.setBounds(240, 40, 680, 360);
+        crossPanel.setBackground(Color.white);
+
 //        crossPanel.setLayout(new GridLayout(10, 10, 5, 5));
 //        crossPanel.setBorder(BorderFactory.createEtchedBorder(1, Color.lightGray, Color.lightGray));
 //        add(crossPanel);
-
         newGame = new JButton("Nuevo juego");
-        newGame.setBounds(20, 160, 130, 25);  /*El tamaño de los botones se ponen a mano porque tienen que coincidir todos en tamaño*/
+        newGame.setBounds(20, 160, 130, 25);  
         newGame.setFont(new Font("Tahoma", Font.PLAIN, 11));
-        //newGame.addActionListener(newGameListener);
+        newGame.addActionListener(newGameListener);
         add(newGame);
 
         showChar = new JButton("Revelar letra");
@@ -136,14 +141,14 @@ public class CrosswordWindow extends JFrame {
         revealAll.addActionListener(showAllListener);
         add(revealAll);
 
-        /*creacion y propiedades de la lista JList con las pistas horizontales.*/
+        
         horizontalList = new JList();
         horizontalList.setBounds(35, 430, 420, 170);
         horizontalList.setBackground(Color.white);
         horizontalList.setBorder(BorderFactory.createEtchedBorder(1));
         add(horizontalList);
 
-        /*creacion y propiedades de la lista JList con las pistas verticales.*/
+        
         verticalList = new JList();
         verticalList.setBounds(490, 430, 420, 170);
         verticalList.setBackground(Color.white);
@@ -151,7 +156,7 @@ public class CrosswordWindow extends JFrame {
         add(verticalList);
 
     }
-
+    /*the painting of the matrix in to the JPanel*/
     public JPanel createMatrix(JPanel crosswordPanel) {
 
         JPanel crosswordMatrix[][] = new JPanel[10][10]; // declaracion de la matriz de paneles
@@ -169,6 +174,7 @@ public class CrosswordWindow extends JFrame {
 
                     crosswordMatrix[i][j].setBackground(Color.black);
                     crosswordMatrix[i][j].enableInputMethods(true);
+
                 } else {
 
                     crosswordMatrix[i][j].setBackground(Color.lightGray);
@@ -182,6 +188,42 @@ public class CrosswordWindow extends JFrame {
         return crosswordPanel;
     }
 
+    /*Filling the matrix with the */
+    public JPanel createFilledMatrix(JPanel crosswordPanel) {
+
+        JPanel crosswordMatrix[][] = new JPanel[10][10]; // declaracion de la matriz de paneles
+
+        for (int i = 0; i < crosswordMatrix.length; i++) {
+            for (int j = 0; j < crosswordMatrix[0].length; j++) {
+
+                crosswordMatrix[i][j] = new JPanel();
+
+                crosswordMatrix[i][j].setBackground(Color.black);
+                crosswordMatrix[i][j].setBorder(BorderFactory.createLineBorder(Color.black, 1));
+                crosswordMatrix[i][j].add(gridLetters = getText(category, i, j));
+
+                if (gridLetters.getText() == "") {
+
+                    crosswordMatrix[i][j].setBackground(Color.black);
+                    crosswordMatrix[i][j].enableInputMethods(true);
+                    crosswordMatrix[i][j].addMouseListener(mouseClick);
+                    crosswordMatrix[i][j].addKeyListener(keyPress);
+                    crosswordMatrix[i][j].addFocusListener(focusItem);
+
+                } else {
+
+                    crosswordMatrix[i][j].setBackground(Color.lightGray);
+
+                }
+
+                crosswordPanel.add(crosswordMatrix[i][j]);
+            }
+        }
+
+        return crosswordPanel;
+    }
+
+    /*cross words with their respective coordenates*/
     public JLabel getText(int category, int i, int j) {
 
         JLabel jlabel = new JLabel();
@@ -202,6 +244,9 @@ public class CrosswordWindow extends JFrame {
                 {"", "", "", "", "", "", "", "", "", "N"},
                 {"", "", "", "", "", "", "", "", "", "A"}};
                 jlabel = new JLabel(crossword[i][j]);
+                jlabel.addMouseListener(mouseClick);
+                jlabel.addKeyListener(keyPress);
+                jlabel.addFocusListener(focusItem);
 
                 break;
 
@@ -218,6 +263,9 @@ public class CrosswordWindow extends JFrame {
                 {"", "", "", "", "", "", "", "T", "", ""},
                 {"", "", "", "", "L", "A", "P", "A", "Z", ""}};
                 jlabel = new JLabel(crossword[i][j]);
+                jlabel.addMouseListener(mouseClick);
+                jlabel.addKeyListener(keyPress);
+                jlabel.addFocusListener(focusItem);
 
                 break;
 
@@ -233,8 +281,10 @@ public class CrosswordWindow extends JFrame {
                 {"", "", "", "O", "", "E", "", "", "", "O"},
                 {"", "", "", "", "", "V", "", "", "", ""},
                 {"", "", "", "", "S", "E", "C", "O", "", ""}};
-                System.out.println("" + crossword[i][j]);
                 jlabel = new JLabel(crossword[i][j]);
+                jlabel.addMouseListener(mouseClick);
+                jlabel.addKeyListener(keyPress);
+                jlabel.addFocusListener(focusItem);
 
                 break;
         }
@@ -242,43 +292,99 @@ public class CrosswordWindow extends JFrame {
         return jlabel;
     }
 
+    /*action listener that sets the Jlists with the clues*/
     final ActionListener comboboxactionListener = new ActionListener() {
 
         public void actionPerformed(ActionEvent actionEvent) {
 
-                      
             horizontalList.setListData(main.getHorizontalClues(crosswordCategories.getSelectedIndex()));
             verticalList.setListData(main.getVerticalClues(crosswordCategories.getSelectedIndex()));
-            //crosswordCategories.hide();
-            
+            crosswordCategories.hide();
+
             /*El panel que va a contener el crucigrama en si*/
             category = crosswordCategories.getSelectedIndex();
             crossPanel.removeAll();
             add(createMatrix(crossPanel));
 
         }
-      };
+    };
 
-//    final ActionListener newGameListener = new ActionListener() {
-//
-//        public void actionPerformed(ActionEvent actionEvent) {
-//
-//            dispose();
-//           
-//            crosswordCategories.show();
-//            main.score = 100;
-//            userScore.setText(main.getScore(main.score));
-//                 
-//            new CrosswordWindow().setVisible(true);
-//            
-//        }
-//    };
-     public void mouseClicked(MouseEvent e) {
+    /*ActionListener that handles creation of a new game, with the refresh method and the combobox activation*/
+    final ActionListener newGameListener = new ActionListener() {
 
-               JOptionPane.showMessageDialog(null,"Digite Letra");
+        public void actionPerformed(ActionEvent actionEvent) {
 
-    }
+            
+            crosswordCategories.show();
+            crossPanel.removeAll();
+            main.score = 100;
+            userScore.setText(main.getScore(main.score));
 
+        }
+    };
+
+    KeyListener keyPress = new KeyListener() {
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+
+        }
+    };
+
+    MouseListener mouseClick = new MouseListener() {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            System.out.println(" hola ");
+            setBackground(Color.yellow);
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    };
+
+    FocusListener focusItem = new FocusListener() {
+
+        @Override
+        public void focusGained(FocusEvent e) {
+
+            setBackground(Color.yellow);
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            setBackground(Color.yellow);
+        }
+    };
+
+    /*ActionListener that handles the character score button*/
     final ActionListener showCharacterListener = new ActionListener() {
 
         public void actionPerformed(ActionEvent actionEvent) {
@@ -289,6 +395,7 @@ public class CrosswordWindow extends JFrame {
         }
     };
 
+    /*ActionListener that handles the word score button*/
     final ActionListener showWordListener = new ActionListener() {
 
         public void actionPerformed(ActionEvent actionEvent) {
@@ -299,11 +406,13 @@ public class CrosswordWindow extends JFrame {
         }
     };
 
+    /*ActionListener that handles the revealing of the entire crossword*/
     final ActionListener showAllListener = new ActionListener() {
 
         public void actionPerformed(ActionEvent actionEvent) {
-
-            
+            category = crosswordCategories.getSelectedIndex();
+            crossPanel.removeAll();
+            add(createFilledMatrix(crossPanel));
             main.minusScore();
             System.out.println("" + main.score);
             userScore.setText(main.getScore(main.score));

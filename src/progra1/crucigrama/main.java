@@ -1,74 +1,75 @@
 package progra1.crucigrama;
 
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 public class main extends JFrame {
 
     public static String name = "";
     public static int score = 100;
-    static int count = 0;  
-    
+
     public static void main(String[] args) {
 
-        final Login login = new Login();                      /*se inicializa las ventana login y sus propiedades*/
-        final CrosswordWindow cw = new CrosswordWindow();
+        final Login login = new Login();                      
+
         //int category = crossInstance.getIndexFromComboBox();
         //System.out.println("category"+ category);
         //GetVerticalClues(category);
-        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); /*cierra el programa al salirse de la ventana*/
+        
+        /*Calls the login window, gets the user name and setsVisible the crosswordWindow*/
+        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+
         login.setVisible(true);
         login.setResizable(false);
         login.btnEnter.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
+                JRootPane rootPane = login.getRootPane();
+                rootPane.setDefaultButton(login.btnEnter);
                 name = login.inputUserName.getText();
-                 cw.setVisible(true);
-                 count++;
+                new CrosswordWindow().setVisible(true);
                 login.dispose();
             }
         });
-        
-        cw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        cw.newGame.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                
-                cw.crossPanel.repaint();
-                //cw.dispose();
-                //new CrosswordWindow().setVisible(true);
-                
-                
-            }
 
-            });
     }
-    public static String getScore(int userScore){
+
+    public static String getScore(int userScore) {
         
-        String finalScore = ""+userScore;
+        if (userScore == 0 || userScore < 0){
         
+            userScore = 0;
+        
+        }
+
+        String finalScore = "" + userScore;
+
         return finalScore;
-    
+
     }
-    
-    public static void characterMinusScore(){
-    
-    score = score - 5;
-        
+
+    public static void characterMinusScore() {
+
+        score = score - 5;
+
     }
-    public static void wordMinusScore(){
-    
-    score = score - 10;
-        
+
+    public static void wordMinusScore() {
+
+        score = score - 10;
+
     }
-    public static void minusScore(){
-    
-    score = score - 100;
-        
+
+    public static void minusScore() {
+
+        score = score - 100;
+
     }
-    
-    
+
+    /*Vertical lists with the clues for the crosswords*/
     public static String[] getVerticalClues(int category) {
 
         String verticalClues[] = new String[6];
@@ -85,14 +86,13 @@ public class main extends JFrame {
 
             case 1:
 
-               
                 verticalClues[0] = "1. Ciudad considerada el centro de la cultura Rusa"; //moscu
                 verticalClues[1] = "2. Capital del país que esta entre Ecuador y Venezuela"; //bogota
 
                 break;
 
             case 2:
-                
+
                 verticalClues[0] = "1. Rafagas de viento de gran velocidad que azotan en centro de Estados Unidos"; //tornado
                 verticalClues[1] = "2. Las que contienen el agua de la lluvia en el cielo"; //nubes
                 verticalClues[2] = "3. Cuando hay que ponerse un sueter es porque hace mucho..."; //frio
@@ -104,6 +104,7 @@ public class main extends JFrame {
         return verticalClues;
     }
 
+    /*Horizontal lists with the clues for the crosswords*/
     public static String[] getHorizontalClues(int category) {
         String horizontalClues[] = new String[6];
 
@@ -129,7 +130,7 @@ public class main extends JFrame {
 
             case 2:
 
-                 horizontalClues[0] = "1. Corre antes de empezar una lluvia"; //viento
+                horizontalClues[0] = "1. Corre antes de empezar una lluvia"; //viento
                 horizontalClues[1] = "2. Lllamada ... frío"; //frente
                 horizontalClues[2] = "3. Estación en el trópico que va desde Diciembre a Mayo"; //seca
 
@@ -139,4 +140,4 @@ public class main extends JFrame {
         return horizontalClues;
     }
 
-    }
+}

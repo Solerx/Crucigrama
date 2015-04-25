@@ -15,7 +15,7 @@ public class Login extends JFrame{
         JLabel labelUserName;   
         JTextField inputUserName;
        
-        
+    /*Login window properties and the creation of objects*/    
     public Login(){ 
         
         super ("Ingreso");                                                                        
